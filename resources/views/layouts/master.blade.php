@@ -120,7 +120,7 @@
   </main>
 
   <footer class="mt-auto text-white-50">
-    <p>Web desarrollada por <a href="https://getbootstrap.com/" class="text-white">Alvaro Cebrian</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+    <p>Web desarrollada por <a href="https://getbootstrap.com/" class="text-white">Aitor Gracia</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
   </footer>
 </div>
 
