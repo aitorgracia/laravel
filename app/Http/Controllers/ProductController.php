@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class AlumnoController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        echo "hola";
+        $productList = Product::all(); //eloquent ORM
+        return view('product.index',['productList' => $productList]);
     }
 
     /**
