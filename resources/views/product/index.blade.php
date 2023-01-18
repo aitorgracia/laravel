@@ -1,34 +1,13 @@
-@extends('layouts.master')
-@section('title','Listado Productos')
+@extends('layouts.app')
 
-@section('encabezado')
-Listado Productos
-@stop
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
 
-@section('cuerpo')
-
-@parent
-@if($errors->any())
-
-<div class="alert alert-danger">
-    <h6>Por favor corrige los siguientes errores:</h6>
-    
-        @foreach($errors->all() as $error)
-        <li> {{$error}}<br></li>
-        @endforeach
-  
-</div>
-@endif
-
-<br>Lista de productos:<br>
+    <br>Lista de productos:<br>
     <a href="{{  route('products.create')  }}">Nuevo Producto</a>
-    <table border="1">
-
-    <tr>
-            <td>Nombre</td>
-            <td>Descripcion</td>
-            <td>Precio</td>
-    </tr>
+    <table class="table table-striped table-hover">
 
     @foreach($productList as $product)
 
@@ -36,8 +15,9 @@ Listado Productos
             <td>{{ $product ->nombre }}</td>
             <td>{{ $product ->descripcion }}</td>
             <td>{{ $product ->precio }}</td>
-            <td><a href="{{ route('products.edit',$product->id) }}">Editar</a></td>
-            <td><a href="{{ route('products.show',$product->id) }}">Ver</a></td>
+            <td><a href="{{ route('products.edit',$product->id) }}" class="btn btn-primary" >Editar</a></td>
+        <td><a href="{{ route('products.show',$product->id) }}" class="btn btn-primary" >Ver</a></td>
+        <td><a href="{{ route('products.destroy',$product->id) }}" class="btn btn-primary" >Borrar</a></td>
         </tr>
 
     @endforeach
@@ -45,8 +25,7 @@ Listado Productos
 
     </table>
 
-    <br>
-
-    <br>
-</form>
-@stop
+    </div>
+    </div>
+</div>
+@endsection
