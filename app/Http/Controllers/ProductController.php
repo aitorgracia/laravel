@@ -25,7 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('product.create');
     }
 
     /**
@@ -36,7 +36,27 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre'=>'required|max:100',
+            'precio'=>'required|gt:0',
+            'descripcion'=>'required'
+
+
+        ],
+        [
+
+            'nombre.required'=>'Debes rellenar el campo nombre',
+            'precio.required'=>'Debes rellenar el campo precio',
+            'descripcion.required'=>'Debes rellenar el campo descricion',
+            'precio.gt'=>'El precio a introducir debe superar 0',
+            'nombre.max'=>'El nombre no puede exceder los 100 caracteres'
+
+        ]);
+
+        Product::create($request->all());
+
+        return redirect()->route('products.index')->with('exit', 'El producto ha sido añadido');
+
     }
 
     /**
@@ -72,7 +92,32 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'nombre'=>'required|max:100',
+            'precio'=>'required|gt:0',
+            'descripcion'=>'required'
+
+
+        ],
+        [
+
+            'nombre.required'=>'Debes rellenar el campo nombre',
+            'precio.required'=>'Debes rellenar el campo precio',
+            'descripcion.required'=>'Debes rellenar el campo descricion',
+            'precio.gt'=>'El precio a introducir debe superar 0',
+            'nombre.max'=>'El nombre no puede exceder los 100 caracteres'
+
+        ]);
+
+        $p = Product::find($id);
+        $p->nombre = $request->input("nombre");
+        $p->descripcion = $request->input("descripcion");
+        $p->precio = $request->input("precio");
+        $p->save();
+
+        return redirect()->route('products.index')->with('exit', 'El producto ha sido actualizado');
+
     }
 
     /**
@@ -83,6 +128,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $p = Product::find($id);;
+        $p->delete();
+
+        return redirect()->route('products.index')->with('exit', 'El producto ha sido borrado');
     }
 }

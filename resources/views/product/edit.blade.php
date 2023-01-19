@@ -16,6 +16,16 @@
         <p><b>Pecio: </b>{{ $product ->precio }}</p>
     </div>
     
+    @if($errors->any())
+        <div class="alert alert-danger">
+        <h6>Por favor corrige los siguientes errores:</h6>
+        
+            @foreach($errors->all() as $error)
+            <li> {{$error}}<br></li>
+            @endforeach
+    
+        </div>
+    @endif
 
     </table>
 
