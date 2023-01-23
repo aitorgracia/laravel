@@ -6,6 +6,7 @@ use App\Http\Controllers\AsignaturaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudyController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,9 @@ use App\Http\Controllers\ProductController;
  * Asignaturas
  */
 
- Route::resource('products',ProductController::class);
+Route::resource('products',ProductController::class);
+
+Route::resource('clients',ClientController::class);
 
 Auth::routes();
 
