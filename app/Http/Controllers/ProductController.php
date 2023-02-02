@@ -12,9 +12,18 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $productList = Product::all(); //eloquent ORM
+
+        $this->authorize('viewAny', Product::class);
+
         return view('product.index',['productList' => $productList]);
     }
 
@@ -67,6 +76,14 @@ class ProductController extends Controller
      */
     public function show($id)
     {
+
+        if ($id % 2 == 0)
+        {session()->increment("contador");}
+        
+        else {
+            session(['contador' => '0']);
+        }
+
         $product = Product::find($id);
         return view('product.show', ['product' => $product]);
     }
